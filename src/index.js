@@ -7,8 +7,8 @@ import Feedback from "./containers/feedback";
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Feedback /> */}
-    <Login />
+    <Feedback />
+    {/* <Login /> */}
   </React.StrictMode>,
   document.getElementById("root")
 );
