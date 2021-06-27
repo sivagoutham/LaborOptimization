@@ -30,6 +30,7 @@ function Feedback() {
     },
   ];
   const [items, setItems] = useState(data);
+  
   const [checkAll, setCheckAll] = useState(false);
 
   const Table = (props) => {
