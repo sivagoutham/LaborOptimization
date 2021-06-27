@@ -3,32 +3,58 @@ import LoggedHeader from "../header";
 
 function Feedback() {
   let data = [
-    {
-      userId: "ABC001",
-      currentSub: "Mix Picking",
-      RecommandedSub: "Enternal Picking",
-    },
-    {
-      userId: "ABC002",
-      currentSub: "Mix Picking",
-      RecommandedSub: "Enternal Picking",
-    },
-    {
-      userId: "ABC003",
-      currentSub: "Mix Picking",
-      RecommandedSub: "Enternal Picking",
-    },
-    {
-      userId: "ABC004",
-      currentSub: "Mix Picking",
-      RecommandedSub: "Enternal Picking",
-    },
-    {
-      userId: "ABC005",
-      currentSub: "Mix Picking",
-      RecommandedSub: "Enternal Picking",
-    },
+    {"USER_ID": "OG1",
+    "FUNCTION":"PICKING",
+    "SUB_FUNCTION":"0 Picking",
+    "TYPE":"Actual",
+    "HOUR_BUCKET":2,
+    "LINES":41.0,
+    "MEASURED_MIN":57.6,
+    "DATE":"2021-06-12",
+    "currentSub": "Mix Picking",
+    }  ,
+    {"USER_ID": "CL13",
+        "FUNCTION":"PUTAWAY",
+        "SUB_FUNCTION":"Case Pull",
+        "TYPE":"Actual",
+        "HOUR_BUCKET":2,
+        "LINES":11.0,
+        "MEASURED_MIN":43.2,
+        "DATE":"2021-06-12",
+        "currentSub": "Mix Picking",
+        } ,
+        {"USER_ID": "fgg",
+            "FUNCTION":"PUTAWAY",
+            "SUB_FUNCTION":"Case Pull",
+            "TYPE":"Actual",
+            "HOUR_BUCKET":2,
+            "LINES":7.0,
+            "MEASURED_MIN":37.2,
+            "DATE":"2021-06-12",
+            "currentSub": "Mix Picking",
+            } ,
+            {"USER_ID": "fgg",
+                "FUNCTION":"PUTAWAY",
+                "SUB_FUNCTION":"Case Pull",
+                "TYPE":"Actual",
+                "HOUR_BUCKET":2,
+                "LINES":10.0,
+                "MEASURED_MIN":55.2,
+                "DATE":"2021-06-12",
+                "currentSub": "Mix Picking",
+                } ,
+                {"USER_ID": "fgg",
+                    "FUNCTION":"PUTAWAY",
+                    "SUB_FUNCTION":"Case Pull",
+                    "TYPE":"Actual",
+                    "HOUR_BUCKET":2,
+                    "LINES":10.0,
+                    "MEASURED_MIN":42.0,
+                    "DATE":"2021-06-12",
+                    "currentSub": "Mix Picking",
+                    }  
   ];
+
   const [items, setItems] = useState(data);
   
   const [checkAll, setCheckAll] = useState(false);
@@ -39,34 +65,43 @@ function Feedback() {
       <>
         {props.items.map((item, i) => (
           <tr key={i}>
-            <th scope="row">
+            {/* <th scope="row">
               <input type="checkbox" class="singlechkbox" name={item.userId} />
-            </th>
-            <td>{item.userId}</td>
+            </th> */}
+            <td scope="row">{item.USER_ID}</td>
             <td>{item.currentSub}</td>
-            <td>{item.RecommandedSub}</td>
+            <td>{item.SUB_FUNCTION}</td>
             <td>
               <select name="cars" id="cars" className="p-1">
                 <option disabled selected value>
                   {" "}
                   -- select an option --{" "}
                 </option>
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
+                <option value="Incont Picking">Incont Picking</option>
+                <option value="Mix Picking">Mix Picking</option>
+                <option value="0 Picking">0 Picking</option>
+                <option value="Enteral Picking">Enteral Picking</option>
+                <option value="Enteral Packing">Enteral Packing</option>
+                <option value="Numina Packing">Numina Packing</option>
+                <option value="Manual Packing">Manual Packing</option>
               </select>
             </td>
             <td>
-              <select name="cars" id="cars" className="p-1">
+              <select name="Reasons" id="Reasons" className="p-1" disabled>
                 <option disabled selected value>
                   {" "}
                   -- select an option --{" "}
                 </option>
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
+                <option value="Cross Train">Cross Train</option>
+                <option value="Missed Service">Missed Service</option>
+                <option value="Receiving Priority">Receiving Priority</option>
+                <option value="Heavy Volume">Heavy Volume</option>
+                <option value="Future Dated Orders">Future Dated Orders</option>
+                <option value="Manager Override">Manager Override</option>
+                <option value="Equipment down – PackSize">Equipment down – PackSize</option>
+                <option value="Equipment Down – Numina">Equipment Down – Numina</option>
+                <option value="Disaster Recovery">Disaster Recovery</option>
+                <option value="New Business">New Business</option>
               </select>
             </td>
           </tr>
@@ -128,14 +163,14 @@ function Feedback() {
             <table className="table ml-3">
               <thead className="tableHeader">
                 <tr>
-                  <th scope="col">
-                    <input
+                  {/* <th scope="col"> */}
+                    {/* <input
                       type="checkbox"
                       id="selectall"
                       onChange={handleCheckAll}
                       checked={checkAll}
-                    />
-                  </th>
+                    /> */}
+                  {/* </th> */}
                   <th scope="col">User ID</th>
                   <th scope="col">Current Subfunction</th>
                   <th scope="col">Recommended Subfunction</th>
@@ -152,14 +187,14 @@ function Feedback() {
                 type="submit"
                 className="btn btn-secondary btn-block btn-style"
               >
-                SUBMIT
+              ACCEPT ALL
               </button>
               <button
                 style={{ marginLeft: "auto" }}
                 type="submit"
                 className="btn btn-secondary btn-block btn-style"
               >
-                ACCEPT ALL
+                  SUBMIT
               </button>
             </div>
           </div>
