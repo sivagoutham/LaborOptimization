@@ -191,7 +191,7 @@ function Feedback() {
           <div className="justify-content-center align-items-center">
             <div className="text-center headerSection">
               <p className="m-0 pt-2 timeSlot">Upcoming Time Slot</p>
-              <p className="m-0 pb-2 timerCSS">11:00 PM - 1:00 PM</p>
+              <p className="m-0 pb-2 timerCSS">{timer[index].value}</p>
             </div>
           </div>
         </div>
