@@ -12,6 +12,7 @@ function Feedback() {
     "MEASURED_MIN":57.6,
     "DATE":"2021-06-12",
     "currentSub": "Mix Picking",
+    "overridenfn":"","reasons":""
     }  ,
     {"USER_ID": "CL13",
         "FUNCTION":"PUTAWAY",
@@ -22,8 +23,9 @@ function Feedback() {
         "MEASURED_MIN":43.2,
         "DATE":"2021-06-12",
         "currentSub": "Mix Picking",
+        "overridenfn":"","reasons":""
         } ,
-        {"USER_ID": "fgg",
+        {"USER_ID": "JM12",
             "FUNCTION":"PUTAWAY",
             "SUB_FUNCTION":"Case Pull",
             "TYPE":"Actual",
@@ -32,8 +34,9 @@ function Feedback() {
             "MEASURED_MIN":37.2,
             "DATE":"2021-06-12",
             "currentSub": "Mix Picking",
+            "overridenfn":"","reasons":""
             } ,
-            {"USER_ID": "fgg",
+            {"USER_ID": "WH1",
                 "FUNCTION":"PUTAWAY",
                 "SUB_FUNCTION":"Case Pull",
                 "TYPE":"Actual",
@@ -42,8 +45,9 @@ function Feedback() {
                 "MEASURED_MIN":55.2,
                 "DATE":"2021-06-12",
                 "currentSub": "Mix Picking",
+                "overridenfn":"","reasons":""
                 } ,
-                {"USER_ID": "fgg",
+                {"USER_ID": "CV2",
                     "FUNCTION":"PUTAWAY",
                     "SUB_FUNCTION":"Case Pull",
                     "TYPE":"Actual",
@@ -52,13 +56,13 @@ function Feedback() {
                     "MEASURED_MIN":42.0,
                     "DATE":"2021-06-12",
                     "currentSub": "Mix Picking",
+                    "overridenfn":"","reasons":""
                     }  
   ];
 
   const [items, setItems] = useState(data);
   
   const [checkAll, setCheckAll] = useState(false);
-
   const Table = (props) => {
     console.log(props);
     return (
@@ -72,10 +76,10 @@ function Feedback() {
             <td>{item.currentSub}</td>
             <td>{item.SUB_FUNCTION}</td>
             <td>
-              <select name="cars" id="cars" className="p-1">
+              <select name="overridenfn" id="overridenfn" className="p-1"  value={item.overridenfn} onChange={(e)=>alert(e.target.value)}>
                 <option disabled selected value>
                   {" "}
-                  -- select an option --{" "}
+                  none{" "}
                 </option>
                 <option value="Incont Picking">Incont Picking</option>
                 <option value="Mix Picking">Mix Picking</option>
@@ -87,10 +91,10 @@ function Feedback() {
               </select>
             </td>
             <td>
-              <select name="Reasons" id="Reasons" className="p-1" disabled>
+              <select name="reasons" id="reasons" className="p-1"  value={item.reasons} onChange={(e)=>alert(e.target.value)}>
                 <option disabled selected value>
                   {" "}
-                  -- select an option --{" "}
+                  none{" "}
                 </option>
                 <option value="Cross Train">Cross Train</option>
                 <option value="Missed Service">Missed Service</option>
