@@ -1,29 +1,35 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Form, FormGroup, Label, Input } from "reactstrap";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 function Login() {
   const history = useHistory();
-  const userDetails = [{
-    username:'floormanager1',
-    password:'floormanager1'
-  },{
-    username:'floormanager2',
-    password:'floormanager2'
-  },{
-    username:'admin',
-    password:'admin'
-  }]
-  const [loginUserName,setLoginUserName]= useState('');
-  const [loginPassword,setLoginPassword]= useState('');
-  const SigninFn =()=>{
-    console.log("Login",loginUserName,loginPassword)
-    let loginCheck = userDetails.filter(data=>data.username==loginUserName&&data.password==loginPassword);
-    if(loginCheck.length===0){
-      alert('login Failed,please check the username and password');
-    }else{
-      history.push('/dashboard')
+  const userDetails = [
+    {
+      username: "floormanager1",
+      password: "floormanager1",
+    },
+    {
+      username: "floormanager2",
+      password: "floormanager2",
+    },
+    {
+      username: "admin",
+      password: "admin",
+    },
+  ];
+  const [loginUserName, setLoginUserName] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const SigninFn = () => {
+    console.log("Login", loginUserName, loginPassword);
+    let loginCheck = userDetails.filter(
+      (data) => data.username == loginUserName && data.password == loginPassword
+    );
+    if (loginCheck.length === 0) {
+      alert("login Failed,please check the username and password");
+    } else {
+      history.push("/dashboard");
     }
-  }
+  };
   return (
     <>
       <div className="container">
@@ -41,7 +47,7 @@ function Login() {
                     className="form-control borderRadius"
                     id="username"
                     placeholder="User Name"
-                    onChange={(e) =>setLoginUserName(e.target.value)}
+                    onChange={(e) => setLoginUserName(e.target.value)}
                   ></Input>
                 </FormGroup>
                 <FormGroup>
@@ -51,7 +57,7 @@ function Login() {
                     className="form-control borderRadius"
                     id="Password"
                     placeholder="Password"
-                    onChange={(e) =>setLoginPassword(e.target.value)}
+                    onChange={(e) => setLoginPassword(e.target.value)}
                   ></Input>
                 </FormGroup>
                 <button
