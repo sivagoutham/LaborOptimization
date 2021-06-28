@@ -31,7 +31,7 @@ function LoggedHeader() {
             </a>
           </div>
           <nav className="header-nav">
-            <a href="" style={{ color: "white", textDecoration: "none" }}>
+            <a href="/" style={{ color: "white", textDecoration: "none" }}>
               <BsFillPersonFill /> LOGOUT
             </a>
           </nav>
