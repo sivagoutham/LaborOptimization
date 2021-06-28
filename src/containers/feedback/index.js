@@ -116,9 +116,13 @@ function Feedback() {
   };
   const onChangeReasons = (e, index) => {
     console.log(e.target.value, index);
+    if(errorFields.includes(index)){
+      errorFields.splice(errorFields.indexOf(index),1)
+    }
     let data = items;
     data[index].reasons = e.target.value;
     setItems([...data]);
+
   };
   const [items, setItems] = useState(data);
   const [errorFields, setErrorFields] = useState([]);
@@ -130,6 +134,7 @@ function Feedback() {
       data.reasons = "";
     });
     setItems([...datas]);
+    setErrorFields([]);
   };
   const dataSubmit = () => {
     let datas = items;
