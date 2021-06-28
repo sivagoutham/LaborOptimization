@@ -36,7 +36,6 @@ function Login() {
     e.preventDefault();
 
     setErrors(validation(values));
-    console.log("Login", loginUserName, loginPassword);
 
     let loginCheck = userDetails.filter(
       (data) =>
