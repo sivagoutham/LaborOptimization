@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { useHistory } from "react-router-dom";
+import validation from "./validation";
 function Login() {
   const history = useHistory();
   const userDetails = [
@@ -17,19 +18,42 @@ function Login() {
       password: "admin",
     },
   ];
-  const [loginUserName, setLoginUserName] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const SigninFn = () => {
+  const [values, setValues] = useState({
+    username: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [dataIsCorrect, setDataISCorrect] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const handleChange = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const SigninFn = (e) => {
+    e.preventDefault();
+
+    setErrors(validation(values));
     console.log("Login", loginUserName, loginPassword);
+
     let loginCheck = userDetails.filter(
-      (data) => data.username == loginUserName && data.password == loginPassword
+      (data) =>
+        data.username == values.username && data.password == values.password
     );
     if (loginCheck.length === 0) {
-      alert("login Failed,please check the username and password");
+      setSuccess(true);
     } else {
-      history.push("/dashboard");
+      setSuccess(false);
+      setDataISCorrect(true);
     }
   };
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && dataIsCorrect) {
+      history.push("/dashboard");
+    }
+  }, [errors]);
   return (
     <>
       <div className="container">
@@ -47,8 +71,13 @@ function Login() {
                     className="form-control borderRadius"
                     id="username"
                     placeholder="User Name"
-                    onChange={(e) => setLoginUserName(e.target.value)}
+                    name="username"
+                    value={values.username}
+                    onChange={handleChange}
                   ></Input>
+                  {errors.username && (
+                    <small className="text-danger">{errors.username}</small>
+                  )}
                 </FormGroup>
                 <FormGroup>
                   <Label for="Password">Password</Label>
@@ -57,13 +86,23 @@ function Login() {
                     className="form-control borderRadius"
                     id="Password"
                     placeholder="Password"
-                    onChange={(e) => setLoginPassword(e.target.value)}
+                    name="password"
+                    value={values.password}
+                    onChange={handleChange}
                   ></Input>
+                  {errors.password && (
+                    <small className="text-danger">{errors.password}</small>
+                  )}
+                  {!errors.password && success && (
+                    <small className="text-danger">
+                      login Failed,please check the username and password
+                    </small>
+                  )}
                 </FormGroup>
                 <button
                   type="submit"
                   className="btn btn-secondary btn-block w-100 borderRadius"
-                  // onClick={SigninFn}
+                  onClick={SigninFn}
                 >
                   Sign In
                 </button>
