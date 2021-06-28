@@ -1,67 +1,115 @@
 import React, { useState, useEffect } from "react";
 import LoggedHeader from "../header";
-
+import Background from '../../assets/gif.gif';
 function Feedback() {
   let data = [
-    {"USER_ID": "OG1",
-    "FUNCTION":"PICKING",
-    "SUB_FUNCTION":"0 Picking",
-    "TYPE":"Actual",
-    "HOUR_BUCKET":2,
-    "LINES":41.0,
-    "MEASURED_MIN":57.6,
-    "DATE":"2021-06-12",
-    "currentSub": "Mix Picking",
-    "overridenfn":"","reasons":""
-    }  ,
-    {"USER_ID": "CL13",
-        "FUNCTION":"PUTAWAY",
-        "SUB_FUNCTION":"Case Pull",
-        "TYPE":"Actual",
-        "HOUR_BUCKET":2,
-        "LINES":11.0,
-        "MEASURED_MIN":43.2,
-        "DATE":"2021-06-12",
-        "currentSub": "Mix Picking",
-        "overridenfn":"","reasons":""
-        } ,
-        {"USER_ID": "JM12",
-            "FUNCTION":"PUTAWAY",
-            "SUB_FUNCTION":"Case Pull",
-            "TYPE":"Actual",
-            "HOUR_BUCKET":2,
-            "LINES":7.0,
-            "MEASURED_MIN":37.2,
-            "DATE":"2021-06-12",
-            "currentSub": "Mix Picking",
-            "overridenfn":"","reasons":""
-            } ,
-            {"USER_ID": "WH1",
-                "FUNCTION":"PUTAWAY",
-                "SUB_FUNCTION":"Case Pull",
-                "TYPE":"Actual",
-                "HOUR_BUCKET":2,
-                "LINES":10.0,
-                "MEASURED_MIN":55.2,
-                "DATE":"2021-06-12",
-                "currentSub": "Mix Picking",
-                "overridenfn":"","reasons":""
-                } ,
-                {"USER_ID": "CV2",
-                    "FUNCTION":"PUTAWAY",
-                    "SUB_FUNCTION":"Case Pull",
-                    "TYPE":"Actual",
-                    "HOUR_BUCKET":2,
-                    "LINES":10.0,
-                    "MEASURED_MIN":42.0,
-                    "DATE":"2021-06-12",
-                    "currentSub": "Mix Picking",
-                    "overridenfn":"","reasons":""
-                    }  
+    {
+      USER_ID: "OG1",
+      FUNCTION: "PICKING",
+      SUB_FUNCTION: "0 Picking",
+      TYPE: "Actual",
+      HOUR_BUCKET: 2,
+      LINES: 41.0,
+      MEASURED_MIN: 57.6,
+      DATE: "2021-06-12",
+      currentSub: "Mix Picking",
+      overridenfn: "",
+      reasons: "",
+    },
+    {
+      USER_ID: "CL13",
+      FUNCTION: "PUTAWAY",
+      SUB_FUNCTION: "Case Pull",
+      TYPE: "Actual",
+      HOUR_BUCKET: 2,
+      LINES: 11.0,
+      MEASURED_MIN: 43.2,
+      DATE: "2021-06-12",
+      currentSub: "Mix Picking",
+      overridenfn: "",
+      reasons: "",
+    },
+    {
+      USER_ID: "JM12",
+      FUNCTION: "PUTAWAY",
+      SUB_FUNCTION: "Case Pull",
+      TYPE: "Actual",
+      HOUR_BUCKET: 2,
+      LINES: 7.0,
+      MEASURED_MIN: 37.2,
+      DATE: "2021-06-12",
+      currentSub: "Mix Picking",
+      overridenfn: "",
+      reasons: "",
+    },
+    {
+      USER_ID: "WH1",
+      FUNCTION: "PUTAWAY",
+      SUB_FUNCTION: "Case Pull",
+      TYPE: "Actual",
+      HOUR_BUCKET: 2,
+      LINES: 10.0,
+      MEASURED_MIN: 55.2,
+      DATE: "2021-06-12",
+      currentSub: "Mix Picking",
+      overridenfn: "",
+      reasons: "",
+    },
+    {
+      USER_ID: "CV2",
+      FUNCTION: "PUTAWAY",
+      SUB_FUNCTION: "Case Pull",
+      TYPE: "Actual",
+      HOUR_BUCKET: 2,
+      LINES: 10.0,
+      MEASURED_MIN: 42.0,
+      DATE: "2021-06-12",
+      currentSub: "Mix Picking",
+      overridenfn: "",
+      reasons: "",
+    },
   ];
-
+  let timer = [
+    { id: "1", value: "00:00 AM - 02:00 AM" },
+    { id: "2", value: "02:00 AM - 04:00 AM" },
+    { id: "3", value: "04:00 AM - 06:00 AM" },
+    { id: "4", value: "06:00 AM - 08:00 AM" },
+    { id: "5", value: "08:00 AM - 10:00 AM" },
+    { id: "6", value: "10:00 AM - 12:00 PM" },
+    { id: "7", value: "12:00 PM - 02:00 PM" },
+    { id: "8", value: "02:00 PM - 04:00 PM" },
+    { id: "9", value: "04:00 PM - 06:00 PM" },
+    { id: "10", value: "06:00 PM - 08:00 PM" },
+    { id: "11", value: "08:00 PM - 10:00 PM" },
+    { id: "12", value: "10:00 PM - 12:00 AM" },
+  ];
+ 
+  let now = new Date().toLocaleTimeString("en-US", {
+    hour: "numeric",
+    hour12: true,
+    minute: "numeric",
+  });
+  function getTwentyFourHourTime(amPmString) {
+    var d = new Date("1/1/2021 " + amPmString);
+    return d.getHours();
+  }
+  const findvalue = timer.find((element, i) => {
+    let split = element.value.split("-");
+    let valid =
+      getTwentyFourHourTime(split[0]) <= getTwentyFourHourTime(now) &&
+      getTwentyFourHourTime(split[1]) > getTwentyFourHourTime(now);
+    if (valid) {
+      return element;
+    }
+  });
+  let index = "";
+  if (findvalue.id === "12") {
+    index = 0;
+  } else {
+    index = parseInt(findvalue.id);
+  }
   const [items, setItems] = useState(data);
-  
+
   const [checkAll, setCheckAll] = useState(false);
   const Table = (props) => {
     console.log(props);
@@ -76,7 +124,13 @@ function Feedback() {
             <td>{item.currentSub}</td>
             <td>{item.SUB_FUNCTION}</td>
             <td>
-              <select name="overridenfn" id="overridenfn" className="p-1"  value={item.overridenfn} onChange={(e)=>alert(e.target.value)}>
+              <select
+                name="overridenfn"
+                id="overridenfn"
+                className="p-1"
+                value={item.overridenfn}
+                onChange={(e) => alert(e.target.value)}
+              >
                 <option disabled selected value>
                   {" "}
                   none{" "}
@@ -91,7 +145,13 @@ function Feedback() {
               </select>
             </td>
             <td>
-              <select name="reasons" id="reasons" className="p-1"  value={item.reasons} onChange={(e)=>alert(e.target.value)}>
+              <select
+                name="reasons"
+                id="reasons"
+                className="p-1"
+                value={item.reasons}
+                onChange={(e) => alert(e.target.value)}
+              >
                 <option disabled selected value>
                   {" "}
                   none{" "}
@@ -102,8 +162,12 @@ function Feedback() {
                 <option value="Heavy Volume">Heavy Volume</option>
                 <option value="Future Dated Orders">Future Dated Orders</option>
                 <option value="Manager Override">Manager Override</option>
-                <option value="Equipment down – PackSize">Equipment down – PackSize</option>
-                <option value="Equipment Down – Numina">Equipment Down – Numina</option>
+                <option value="Equipment down – PackSize">
+                  Equipment down – PackSize
+                </option>
+                <option value="Equipment Down – Numina">
+                  Equipment Down – Numina
+                </option>
                 <option value="Disaster Recovery">Disaster Recovery</option>
                 <option value="New Business">New Business</option>
               </select>
@@ -120,26 +184,24 @@ function Feedback() {
   return (
     <>
       <LoggedHeader />
-      <div className="container" style={{ paddingTop: "5.2em" }}>
-        <h5>Feedback loop for cross-training</h5>
-        <div className="horizontal-custom"></div>
+      <div className="container" style={{ paddingTop: "7rem" }}>
+        <div className="backgroundImageGIF" >
+          
         <div className="contentDisplay pt-4">
           <div className="justify-content-center align-items-center">
             <div className="text-center headerSection">
               <p className="m-0 pt-2 timeSlot">Upcoming Time Slot</p>
-              <p className="m-0 pb-2 timerCSS">11:00 PM - 1:00 PM</p>
+              <p className="m-0 pb-2 timerCSS">{timer[index].value}</p>
             </div>
           </div>
         </div>
+        </div>
         <div className="contentContainer">
-          <p className="text-center pt-3">
-            Floor manager will have to make sure they are submitting this data
-            before start of work in that hour bucket
-          </p>
-          <div className="d-flex flex-start">
+          
+          <div className="d-flex contentCenter">
             <div className="text-center d-flex">
               <div
-                className="grayBackground p-3"
+                className="greenBackground p-3"
                 style={{ marginLeft: "15px" }}
               >
                 <div>
@@ -151,7 +213,7 @@ function Feedback() {
               </div>
 
               <div
-                className="grayBackground p-3"
+                className="greenBackground p-3"
                 style={{ marginLeft: "15px" }}
               >
                 <div>
@@ -163,12 +225,12 @@ function Feedback() {
               </div>
             </div>
           </div>
-          <div className="p-3">
-            <table className="table ml-3">
-              <thead className="tableHeader">
-                <tr>
+          <div className="p-3 tableConetent">
+            <table className="table table-hover table-dark ml-3">
+              <thead >
+                <tr style={{borderBottom: '3px solid black'}}>
                   {/* <th scope="col"> */}
-                    {/* <input
+                  {/* <input
                       type="checkbox"
                       id="selectall"
                       onChange={handleCheckAll}
@@ -186,22 +248,16 @@ function Feedback() {
                 <Table items={items} parentState={checkAll} />
               </tbody>
             </table>
-            <div className="d-flex">
-              <button
-                type="submit"
-                className="btn btn-secondary btn-block btn-style"
-              >
-              ACCEPT ALL
-              </button>
-              <button
-                style={{ marginLeft: "auto" }}
-                type="submit"
-                className="btn btn-secondary btn-block btn-style"
-              >
-                  SUBMIT
-              </button>
-            </div>
           </div>
+          <div>
+    <ol class="content__">
+      <li class="content__item">
+        <button class="button button--pan"><span>Accept All</span></button>
+      </li>
+      <li class="content__item">
+        <button class="button button--pan"><span>Submit All</span></button>
+      </li></ol>
+  </div>
         </div>
       </div>
     </>
