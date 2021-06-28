@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LoggedHeader from "../header";
-import Background from '../../assets/gif.gif';
+import Background from "../../assets/gif.gif";
 function Feedback() {
   let data = [
     {
@@ -83,7 +83,7 @@ function Feedback() {
     { id: "11", value: "08:00 PM - 10:00 PM" },
     { id: "12", value: "10:00 PM - 12:00 AM" },
   ];
- 
+
   let now = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",
     hour12: true,
@@ -108,9 +108,43 @@ function Feedback() {
   } else {
     index = parseInt(findvalue.id);
   }
+  const onChangeOverridenfn = (e, index) => {
+    console.log(e.target.value, index);
+    let data = items;
+    data[index].overridenfn = e.target.value;
+    setItems([...data]);
+  };
+  const onChangeReasons = (e, index) => {
+    console.log(e.target.value, index);
+    let data = items;
+    data[index].reasons = e.target.value;
+    setItems([...data]);
+  };
   const [items, setItems] = useState(data);
-
+  const [errorFields, setErrorFields] = useState([]);
   const [checkAll, setCheckAll] = useState(false);
+  const dataReset = () => {
+    let datas = items;
+    datas.map((data) => {
+      data.overridenfn = "";
+      data.reasons = "";
+    });
+    setItems(datas);
+  };
+  const dataSubmit = () => {
+    let datas = items;
+    let validErrorData = [];
+    
+    datas.map((data,i)=>{
+      if(data.overridenfn.length!=0 && data.reasons==0){
+        validErrorData.push(i)
+      }
+    })
+    setErrorFields(validErrorData)
+    if(validErrorData.length===0){
+      //submit function call here
+    }
+  };
   const Table = (props) => {
     console.log(props);
     return (
@@ -129,9 +163,9 @@ function Feedback() {
                 id="overridenfn"
                 className="p-1"
                 value={item.overridenfn}
-                onChange={(e) => alert(e.target.value)}
+                onChange={(e) => onChangeOverridenfn(e, i)}
               >
-                <option disabled selected value>
+                <option disabled value="">
                   {" "}
                   none{" "}
                 </option>
@@ -148,11 +182,12 @@ function Feedback() {
               <select
                 name="reasons"
                 id="reasons"
-                className="p-1"
+                className={`p-1 ${errorFields.includes(i)?'errorData':''}`}
                 value={item.reasons}
-                onChange={(e) => alert(e.target.value)}
+                disabled={item.overridenfn.length === 0}
+                onChange={(e) => onChangeReasons(e, i)}
               >
-                <option disabled selected value>
+                <option disabled value="">
                   {" "}
                   none{" "}
                 </option>
@@ -185,19 +220,17 @@ function Feedback() {
     <>
       <LoggedHeader />
       <div className="container" style={{ paddingTop: "7rem" }}>
-        <div className="backgroundImageGIF" >
-          
-        <div className="contentDisplay pt-4">
-          <div className="justify-content-center align-items-center">
-            <div className="text-center headerSection">
-              <p className="m-0 pt-2 timeSlot">Upcoming Time Slot</p>
-              <p className="m-0 pb-2 timerCSS">{timer[index].value}</p>
+        <div className="backgroundImageGIF">
+          <div className="contentDisplay pt-4">
+            <div className="justify-content-center align-items-center">
+              <div className="text-center headerSection">
+                <p className="m-0 pt-2 timeSlot">Upcoming Time Slot</p>
+                <p className="m-0 pb-2 timerCSS">{timer[index].value}</p>
+              </div>
             </div>
           </div>
         </div>
-        </div>
         <div className="contentContainer">
-          
           <div className="d-flex contentCenter">
             <div className="text-center d-flex">
               <div
@@ -227,8 +260,8 @@ function Feedback() {
           </div>
           <div className="p-3 tableConetent">
             <table className="table table-hover table-dark ml-3">
-              <thead >
-                <tr style={{borderBottom: '3px solid black'}}>
+              <thead>
+                <tr style={{ borderBottom: "3px solid black" }}>
                   {/* <th scope="col"> */}
                   {/* <input
                       type="checkbox"
@@ -248,16 +281,24 @@ function Feedback() {
                 <Table items={items} parentState={checkAll} />
               </tbody>
             </table>
+            {errorFields.length>0&&<div className="errorData">
+                ***Please fill data in mandatory fields***
+              </div>}
           </div>
           <div>
-    <ol class="content__">
-      <li class="content__item">
-        <button class="button button--pan"><span>Accept All</span></button>
-      </li>
-      <li class="content__item">
-        <button class="button button--pan"><span>Submit All</span></button>
-      </li></ol>
-  </div>
+            <ol className="content__">
+              <li className="content__item">
+                <button className="button button--pan" onClick={dataReset}>
+                  <span>Accept All</span>
+                </button>
+              </li>
+              <li className="content__item">
+                <button className="button button--pan" onClick={dataSubmit}>
+                  <span>Submit All</span>
+                </button>
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </>
