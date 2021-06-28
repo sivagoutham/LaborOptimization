@@ -129,7 +129,7 @@ function Feedback() {
       data.overridenfn = "";
       data.reasons = "";
     });
-    setItems(datas);
+    setItems([...datas]);
   };
   const dataSubmit = () => {
     let datas = items;
