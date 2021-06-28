@@ -263,3 +263,8 @@ tr{
 .button--pan:hover::before {
 	transform: translate3d(0,-100%,0);
 }
+.errorData{
+  color:red;
+  background-color: #fff;
+  border-color: 1px solid red;
+}
