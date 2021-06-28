@@ -98,16 +98,17 @@ function Feedback() {
     let valid =
       getTwentyFourHourTime(split[0]) <= getTwentyFourHourTime(now) &&
       getTwentyFourHourTime(split[1]) > getTwentyFourHourTime(now);
+    console.log(valid);
     if (valid) {
       return element;
     }
   });
   let index = "";
-  if (findvalue.id === "12") {
-    index = 0;
-  } else {
-    index = parseInt(findvalue.id);
-  }
+  // if (findvalue.id === "12") {
+  //   index = 0;
+  // } else {
+  //   index = parseInt(findvalue.id);
+  // }
   const onChangeOverridenfn = (e, index) => {
     console.log(e.target.value, index);
     let data = items;
@@ -134,14 +135,14 @@ function Feedback() {
   const dataSubmit = () => {
     let datas = items;
     let validErrorData = [];
-    
-    datas.map((data,i)=>{
-      if(data.overridenfn.length!=0 && data.reasons==0){
-        validErrorData.push(i)
+
+    datas.map((data, i) => {
+      if (data.overridenfn.length != 0 && data.reasons == 0) {
+        validErrorData.push(i);
       }
-    })
-    setErrorFields(validErrorData)
-    if(validErrorData.length===0){
+    });
+    setErrorFields(validErrorData);
+    if (validErrorData.length === 0) {
       //submit function call here
     }
   };
@@ -182,7 +183,7 @@ function Feedback() {
               <select
                 name="reasons"
                 id="reasons"
-                className={`p-1 ${errorFields.includes(i)?'errorData':''}`}
+                className={`p-1 ${errorFields.includes(i) ? "errorData" : ""}`}
                 value={item.reasons}
                 disabled={item.overridenfn.length === 0}
                 onChange={(e) => onChangeReasons(e, i)}
@@ -225,7 +226,7 @@ function Feedback() {
             <div className="justify-content-center align-items-center">
               <div className="text-center headerSection">
                 <p className="m-0 pt-2 timeSlot">Upcoming Time Slot</p>
-                <p className="m-0 pb-2 timerCSS">{timer[index].value}</p>
+                <p className="m-0 pb-2 timerCSS">11:00 AM - 01:00 PM</p>
               </div>
             </div>
           </div>
@@ -238,7 +239,7 @@ function Feedback() {
                 style={{ marginLeft: "15px" }}
               >
                 <div>
-                  <p className="mb-0">Orders outstanding </p>
+                  <p className="mb-0">Orders Outstanding </p>
                 </div>
                 <div>
                   <p className="mb-0">1003</p>
@@ -281,9 +282,11 @@ function Feedback() {
                 <Table items={items} parentState={checkAll} />
               </tbody>
             </table>
-            {errorFields.length>0&&<div className="errorData">
+            {errorFields.length > 0 && (
+              <div className="errorData">
                 ***Please fill data in mandatory fields***
-              </div>}
+              </div>
+            )}
           </div>
           <div>
             <ol className="content__">
