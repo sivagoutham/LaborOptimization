@@ -95,20 +95,21 @@ function Feedback() {
   }
   const findvalue = timer.find((element, i) => {
     let split = element.value.split("-");
-    let valid =
+    if (
       getTwentyFourHourTime(split[0]) <= getTwentyFourHourTime(now) &&
-      getTwentyFourHourTime(split[1]) > getTwentyFourHourTime(now);
-    console.log(valid);
-    if (valid) {
+      getTwentyFourHourTime(split[1]) > getTwentyFourHourTime(now)
+    ) {
+      return element;
+    } else if (getTwentyFourHourTime(split[0]) == getTwentyFourHourTime(now)) {
       return element;
     }
   });
   let index = "";
-  // if (findvalue.id === "12") {
-  //   index = 0;
-  // } else {
-  //   index = parseInt(findvalue.id);
-  // }
+  if (findvalue.id === "12") {
+    index = 0;
+  } else {
+    index = parseInt(findvalue.id);
+  }
   const onChangeOverridenfn = (e, index) => {
     console.log(e.target.value, index);
     let data = items;
@@ -117,13 +118,12 @@ function Feedback() {
   };
   const onChangeReasons = (e, index) => {
     console.log(e.target.value, index);
-    if(errorFields.includes(index)){
-      errorFields.splice(errorFields.indexOf(index),1)
+    if (errorFields.includes(index)) {
+      errorFields.splice(errorFields.indexOf(index), 1);
     }
     let data = items;
     data[index].reasons = e.target.value;
     setItems([...data]);
-
   };
   const [items, setItems] = useState(data);
   const [errorFields, setErrorFields] = useState([]);
@@ -231,7 +231,7 @@ function Feedback() {
             <div className="justify-content-center align-items-center">
               <div className="text-center headerSection">
                 <p className="m-0 pt-2 timeSlot">Upcoming Time Slot</p>
-                <p className="m-0 pb-2 timerCSS">11:00 AM - 01:00 PM</p>
+                <p className="m-0 pb-2 timerCSS">{timer[index].value}</p>
               </div>
             </div>
           </div>
@@ -264,7 +264,7 @@ function Feedback() {
               </div>
             </div>
           </div>
-          <div className="p-3 tableConetent">
+          <div className="px-3 pb-3 pt-1 tableConetent table-responsive">
             <table className="table table-hover table-dark ml-3">
               <thead>
                 <tr style={{ borderBottom: "3px solid black" }}>
