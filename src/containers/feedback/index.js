@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LoggedHeader from "../header";
-import Background from "../../assets/gif.gif";
+import Modal from '../../components/ModalComponent/Modal'
 function Feedback() {
   let data = [
     {
@@ -125,10 +125,14 @@ function Feedback() {
     data[index].reasons = e.target.value;
     setItems([...data]);
   };
-  const [items, setItems] = useState(data);
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem(localStorage.getItem("userName")))||data);
   const [errorFields, setErrorFields] = useState([]);
   const [checkAll, setCheckAll] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalText, setModalText] = useState('');
   const dataReset = () => {
+    setShowModal(true);
+    setModalText('Resetting values will revert all your changes');
     let datas = items;
     datas.map((data) => {
       data.overridenfn = "";
@@ -138,17 +142,30 @@ function Feedback() {
     setErrorFields([]);
   };
   const dataSubmit = () => {
+   
     let datas = items;
     let validErrorData = [];
-
-    datas.map((data, i) => {
-      if (data.overridenfn.length != 0 && data.reasons == 0) {
-        validErrorData.push(i);
+    let newDataArray = [];
+    datas.map((data,i)=>{
+      if(data.overridenfn.length!=0 && data.reasons==0){
+        validErrorData.push(i)
+      }else{
+        if(data.overridenfn.length!=0){
+          data.SUB_FUNCTION =  data.overridenfn;
+        }
+        data.overridenfn='';
+        data.reasons='';
+        newDataArray.push(data);
       }
-    });
-    setErrorFields(validErrorData);
-    if (validErrorData.length === 0) {
+    })
+    console.log("newDataArray",newDataArray)
+    setErrorFields(validErrorData)
+    if(validErrorData.length===0){
       //submit function call here
+      let userName = localStorage.getItem('userName');
+      localStorage.setItem(userName,JSON.stringify(newDataArray));
+      setShowModal(true);
+      setModalText('Changes are submitted successfully');
     }
   };
   const Table = (props) => {
@@ -264,6 +281,7 @@ function Feedback() {
               </div>
             </div>
           </div>
+          <Modal isOpen={showModal} setShowModal={setShowModal} text={modalText}/>
           <div className="px-3 pb-3 pt-1 tableConetent table-responsive">
             <table className="table table-hover table-dark ml-3">
               <thead>
@@ -302,7 +320,7 @@ function Feedback() {
               </li>
               <li className="content__item">
                 <button className="button button--pan" onClick={dataSubmit}>
-                  <span>Submit All</span>
+                  <span>Submit</span>
                 </button>
               </li>
             </ol>
