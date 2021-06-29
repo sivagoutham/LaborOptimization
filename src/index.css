@@ -14,11 +14,8 @@ code {
 body,
 html {
   height: 100%;
-  
-  
 }
-#root{
-
+#root {
   background: black;
 }
 
@@ -148,10 +145,9 @@ html {
   padding: 16px;
 }
 .contentContainer {
-  
 }
-.contentCenter{
-  justify-content:center;
+.contentCenter {
+  justify-content: center;
   margin: 20px 0px;
 }
 .tableHeader {
@@ -163,12 +159,12 @@ html {
   width: 13%;
   border-radius: 26px !important;
 }
-.tableConetent{
+.tableConetent {
   border: 2px solid gray;
   margin-bottom: 20px;
 }
 
-tr{
+tr {
   border-color: black !important;
 }
 /* .buttonContainer button{
@@ -176,96 +172,105 @@ tr{
   border:2px solid #ffffff;
   
 } */
-.content__  {
-	display: flex;
-	width: 100%;
-	margin: 0 auto;
-	padding: 10vh 25px;
-	max-width: 1300px;
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-	grid-auto-rows: 200px;
-	grid-gap: 4rem;
-	grid-row-gap: 6rem;
-	justify-content: center;
-	list-style: none;
+.content__ {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10vh 25px;
+  max-width: 1300px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 200px;
+  grid-gap: 4rem;
+  grid-row-gap: 6rem;
+  justify-content: center;
+  list-style: none;
   margin-top: -125px;
 }
-.listtype{
-    list-style-type:none;
+.listtype {
+  list-style-type: none;
 }
 
 .content__item {
-	width: 100%;
-    height: 100%;
-    margin: 95px;
-    padding: 0;
-    counter-increment: itemcounter;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    pointer-events: none;
-    display: inline;
+  width: 100%;
+  height: 100%;
+  margin: 95px;
+  padding: 0;
+  counter-increment: itemcounter;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  display: inline;
 }
 
 .content__item::before {
-	color: var(--color-number);
-	position: absolute;
-	top: 0;
-	left: 0;
-	content: counters(itemcounter, ".", decimal-leading-zero);
-    display: none;
+  color: var(--color-number);
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: counters(itemcounter, ".", decimal-leading-zero);
+  display: none;
 }
 
 .button {
-	pointer-events: auto;
-	cursor: pointer;
-	background: #e7e7e7;
-	border: none;
-	padding: 1.5rem 3rem;
-	margin: 0;
-	font-family: inherit;
-	font-size: inherit;
-	position: relative;
-	display: inline-block;
+  pointer-events: auto;
+  cursor: pointer;
+  background: #e7e7e7;
+  border: none;
+  padding: 1.5rem 3rem;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  position: relative;
+  display: inline-block;
 }
 
 .button::before,
 .button::after {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 .button--pan {
-	font-family: aktiv-grotesk-extended, sans-serif;
-	font-weight: 700;
-	border: 2px solid white;
-	border-radius: 3rem;
-	overflow: hidden;
-	color: #fff;
+  font-family: aktiv-grotesk-extended, sans-serif;
+  font-weight: 700;
+  border: 2px solid white;
+  border-radius: 3rem;
+  overflow: hidden;
+  color: #fff;
 }
 
 .button--pan span {
-	position: relative;
-	mix-blend-mode: difference;
+  position: relative;
+  mix-blend-mode: difference;
 }
 
 .button--pan::before {
-	content: '';
-	background: #000;
-	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+  content: "";
+  background: #000;
+  transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 .button--pan:hover::before {
-	transform: translate3d(0,-100%,0);
+  transform: translate3d(0, -100%, 0);
 }
-.errorData{
-  color:red;
+.errorData {
+  color: red;
   background-color: #fff;
   border-color: 1px solid red;
-  
+}
+
+.table-responsive {
+  height: 300px;
+  overflow: scroll;
+}
+thead tr:nth-child(1) th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
