@@ -11,8 +11,8 @@ ReactDOM.render(
     {/* <Login /> */}
     <Router>
       <Switch>
-        <Route exact path="/" component={Login}/>
-        <Route path="/dashboard" component={Feedback}/>
+        {/* <Route exact path="/" component={Login}/> */}
+        <Route path="/" component={Feedback}/>
       </Switch>
   </Router>
 

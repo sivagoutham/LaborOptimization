@@ -126,7 +126,7 @@ function Feedback() {
     data[index].reasons = e.target.value;
     setItems([...data]);
   };
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem(localStorage.getItem("userName")))||Data);
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem(admin))||Data);
   const [errorFields, setErrorFields] = useState([]);
   const [checkAll, setCheckAll] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -162,7 +162,8 @@ function Feedback() {
     setErrorFields(validErrorData);
     if (validErrorData.length === 0) {
       //submit function call here
-      let userName = localStorage.getItem("userName");
+      // let userName = localStorage.getItem("userName");
+      let userName = "admin";
       localStorage.setItem(userName, JSON.stringify(newDataArray));
       setShowModal(true);
       setModalText('Message-You Feedback has been recorded successfully.');
