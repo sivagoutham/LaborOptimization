@@ -1,0 +1,578 @@
+[
+  {
+    "USER_ID": "JR37",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "CV2",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "RM13",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "TD5",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "GV2",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "GV2",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "AG4",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "CL13",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "KLG",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "AF14",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "MG11",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "OG1",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "0 Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "CT5",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "JM12",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "RB2",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Numina Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "RD9",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "MG15",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "LE1",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Numina Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "FCL",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "LC2",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "LC2",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Numina Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "GA1",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Enteral Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "SZC",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Incont Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "SZC",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "IS2",
+    "ExistingSubfunction": "NA",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "DS17",
+    "ExistingSubfunction": "0 Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "TD5",
+    "ExistingSubfunction": "0 Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "GA1",
+    "ExistingSubfunction": "0 Picking",
+    "ProjectedSubfunction": "Enteral Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "JR37",
+    "ExistingSubfunction": "0 Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "GA1",
+    "ExistingSubfunction": "Receiving",
+    "ProjectedSubfunction": "Enteral Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "FCL",
+    "ExistingSubfunction": "Receiving",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "SZC",
+    "ExistingSubfunction": "Receiving",
+    "ProjectedSubfunction": "Incont Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "SZC",
+    "ExistingSubfunction": "Receiving",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "KLG",
+    "ExistingSubfunction": "Receiving",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "MG15",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "LE1",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Numina Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "IS2",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "JR37",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "OG1",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "0 Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "KLG",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "AG4",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "RD9",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "AF14",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "CT5",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "TD5",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "RB2",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Numina Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "FCL",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "MG11",
+    "ExistingSubfunction": "Mix Picking",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "KLG",
+    "ExistingSubfunction": "Case Putaway",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "DS17",
+    "ExistingSubfunction": "Incont Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "OG1",
+    "ExistingSubfunction": "Incont Picking",
+    "ProjectedSubfunction": "0 Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "JM12",
+    "ExistingSubfunction": "Incont Picking",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "RD9",
+    "ExistingSubfunction": "Incont Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "TD5",
+    "ExistingSubfunction": "Incont Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "MG15",
+    "ExistingSubfunction": "Incont Picking",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "GV2",
+    "ExistingSubfunction": "Manual Packing",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "GV2",
+    "ExistingSubfunction": "Manual Packing",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "CV2",
+    "ExistingSubfunction": "Manual Packing",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "RM13",
+    "ExistingSubfunction": "Manual Packing",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "SZC",
+    "ExistingSubfunction": "Manual Packing",
+    "ProjectedSubfunction": "Incont Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "SZC",
+    "ExistingSubfunction": "Manual Packing",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "LC2",
+    "ExistingSubfunction": "Manual Packing",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "LC2",
+    "ExistingSubfunction": "Manual Packing",
+    "ProjectedSubfunction": "Numina Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "CL13",
+    "ExistingSubfunction": "Manual Packing",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "CV2",
+    "ExistingSubfunction": "Enteral Packing",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "RD9",
+    "ExistingSubfunction": "Enteral Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "JR37",
+    "ExistingSubfunction": "Enteral Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "TD5",
+    "ExistingSubfunction": "Enteral Picking",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "TD5",
+    "ExistingSubfunction": "Returns Putaway",
+    "ProjectedSubfunction": "Manual Packing",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "KLG",
+    "ExistingSubfunction": "Returns Putaway",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "JM12",
+    "ExistingSubfunction": "Returns Putaway",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  },
+  {
+    "USER_ID": "FCL",
+    "ExistingSubfunction": "Returns Putaway",
+    "ProjectedSubfunction": "Mix Picking",
+    "currentSub": "Mix Picking",
+    "overridenfn": "",
+    "reasons": ""
+  }
+]
