@@ -39,7 +39,7 @@ function Login() {
 
     let loginCheck = userDetails.filter(
       (data) =>
-        data.username == values.username && data.password == values.password
+        data.username === values.username && data.password === values.password
     );
     if (loginCheck.length === 0) {
       setSuccess(true);

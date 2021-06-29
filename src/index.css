@@ -269,3 +269,11 @@ tr{
   border-color: 1px solid red;
   
 }
+.ModalContent{
+  display: grid;
+  text-align: center;
+  justify-items: center;
+}
+.ModalButton{
+  width:fit-content;
+}
