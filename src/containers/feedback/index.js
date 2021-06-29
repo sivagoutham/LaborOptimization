@@ -130,7 +130,7 @@ function Feedback() {
   const [errorFields, setErrorFields] = useState([]);
   const [checkAll, setCheckAll] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [modalText, setModalText] = useState('');
+  const [modalText, setModalText] = useState("");
   const dataReset = () => {
     setShowModal(true);
     setModalText('Thanks you for accepting the recommendations.');
@@ -143,7 +143,6 @@ function Feedback() {
     setErrorFields([]);
   };
   const dataSubmit = () => {
-   
     let datas = items;
     let validErrorData = [];
     let newDataArray = [];
@@ -154,17 +153,17 @@ function Feedback() {
         if(data.overridenfn.length!=0){
           data.ProjectedSubfunction =  data.overridenfn;
         }
-        data.overridenfn='';
-        data.reasons='';
+        data.overridenfn = "";
+        data.reasons = "";
         newDataArray.push(data);
       }
-    })
-    console.log("newDataArray",newDataArray)
-    setErrorFields(validErrorData)
-    if(validErrorData.length===0){
+    });
+    console.log("newDataArray", newDataArray);
+    setErrorFields(validErrorData);
+    if (validErrorData.length === 0) {
       //submit function call here
-      let userName = localStorage.getItem('userName');
-      localStorage.setItem(userName,JSON.stringify(newDataArray));
+      let userName = localStorage.getItem("userName");
+      localStorage.setItem(userName, JSON.stringify(newDataArray));
       setShowModal(true);
       setModalText('Message-You Feedback has been recorded successfully.');
     }
@@ -249,7 +248,12 @@ function Feedback() {
             <div className="justify-content-center align-items-center">
               <div className="text-center headerSection">
                 <p className="m-0 pt-2 timeSlot">Upcoming Time Slot</p>
-                <p className="m-0 pb-2 timerCSS">{timer[index].value}</p>
+                <div className="m-0 pb-2 timerCSS d-flex">
+                  <div style={{ paddingLeft: "10px", paddingRight: "30%" }}>
+                    {new Date().toLocaleDateString()}
+                  </div>
+                  <div>{timer[index].value}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -282,7 +286,11 @@ function Feedback() {
               </div>
             </div>
           </div>
-          <Modal isOpen={showModal} setShowModal={setShowModal} text={modalText}/>
+          <Modal
+            isOpen={showModal}
+            setShowModal={setShowModal}
+            text={modalText}
+          />
           <div className="px-3 pb-3 pt-1 tableConetent table-responsive">
             <table className="table table-hover table-dark ml-3">
               <thead>
