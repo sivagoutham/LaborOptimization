@@ -95,10 +95,12 @@ function Feedback() {
   }
   const findvalue = timer.find((element, i) => {
     let split = element.value.split("-");
-    let valid =
+    if (
       getTwentyFourHourTime(split[0]) <= getTwentyFourHourTime(now) &&
-      getTwentyFourHourTime(split[1]) > getTwentyFourHourTime(now);
-    if (valid) {
+      getTwentyFourHourTime(split[1]) > getTwentyFourHourTime(now)
+    ) {
+      return element;
+    } else if (getTwentyFourHourTime(split[0]) == getTwentyFourHourTime(now)) {
       return element;
     }
   });
@@ -116,19 +118,18 @@ function Feedback() {
   };
   const onChangeReasons = (e, index) => {
     console.log(e.target.value, index);
-    if(errorFields.includes(index)){
-      errorFields.splice(errorFields.indexOf(index),1)
+    if (errorFields.includes(index)) {
+      errorFields.splice(errorFields.indexOf(index), 1);
     }
     let data = items;
     data[index].reasons = e.target.value;
     setItems([...data]);
-
   };
-  const [items, setItems] = useState(data);
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem(localStorage.getItem("userName")))||data);
   const [errorFields, setErrorFields] = useState([]);
   const [checkAll, setCheckAll] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [modalText, setModalText] = useState(''); 
+  const [modalText, setModalText] = useState('');
   const dataReset = () => {
     setShowModal(true);
     setModalText('Resetting values will revert all your changes');
@@ -161,6 +162,8 @@ function Feedback() {
     setErrorFields(validErrorData)
     if(validErrorData.length===0){
       //submit function call here
+      let userName = localStorage.getItem('userName');
+      localStorage.setItem(userName,JSON.stringify(newDataArray));
       setShowModal(true);
       setModalText('Changes are submitted successfully');
     }
@@ -202,7 +205,7 @@ function Feedback() {
               <select
                 name="reasons"
                 id="reasons"
-                className={`p-1 ${errorFields.includes(i)?'errorData':''}`}
+                className={`p-1 ${errorFields.includes(i) ? "errorData" : ""}`}
                 value={item.reasons}
                 disabled={item.overridenfn.length === 0}
                 onChange={(e) => onChangeReasons(e, i)}
@@ -258,7 +261,7 @@ function Feedback() {
                 style={{ marginLeft: "15px" }}
               >
                 <div>
-                  <p className="mb-0">Orders outstanding </p>
+                  <p className="mb-0">Orders Outstanding </p>
                 </div>
                 <div>
                   <p className="mb-0">1003</p>
@@ -279,7 +282,7 @@ function Feedback() {
             </div>
           </div>
           <Modal isOpen={showModal} setShowModal={setShowModal} text={modalText}/>
-          <div className="p-3 tableConetent">
+          <div className="px-3 pb-3 pt-1 tableConetent table-responsive">
             <table className="table table-hover table-dark ml-3">
               <thead>
                 <tr style={{ borderBottom: "3px solid black" }}>
@@ -302,9 +305,11 @@ function Feedback() {
                 <Table items={items} parentState={checkAll} />
               </tbody>
             </table>
-            {errorFields.length>0&&<div className="errorData">
+            {errorFields.length > 0 && (
+              <div className="errorData">
                 ***Please fill data in mandatory fields***
-              </div>}
+              </div>
+            )}
           </div>
           <div>
             <ol className="content__">
