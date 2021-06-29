@@ -20,11 +20,11 @@ function LoggedHeader() {
             before start of work in that hour bucket
           </p>
           </div>
-          <nav className="header-nav">
+          {/* <nav className="header-nav">
             <a href="/" style={{ color: "white", textDecoration: "none" }}>
               <BsFillPersonFill /> LOGOUT
             </a>
-          </nav>
+          </nav> */}
         </div>
       </div>
     </header>
