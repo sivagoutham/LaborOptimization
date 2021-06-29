@@ -1,74 +1,75 @@
 import React, { useState, useEffect } from "react";
 import LoggedHeader from "../header";
-import Modal from "../../components/ModalComponent/Modal";
+import Modal from '../../components/ModalComponent/Modal';
+import Data from '../../data/data.json';
 function Feedback() {
-  let data = [
-    {
-      USER_ID: "OG1",
-      FUNCTION: "PICKING",
-      SUB_FUNCTION: "0 Picking",
-      TYPE: "Actual",
-      HOUR_BUCKET: 2,
-      LINES: 41.0,
-      MEASURED_MIN: 57.6,
-      DATE: "2021-06-12",
-      currentSub: "Mix Picking",
-      overridenfn: "",
-      reasons: "",
-    },
-    {
-      USER_ID: "CL13",
-      FUNCTION: "PUTAWAY",
-      SUB_FUNCTION: "Case Pull",
-      TYPE: "Actual",
-      HOUR_BUCKET: 2,
-      LINES: 11.0,
-      MEASURED_MIN: 43.2,
-      DATE: "2021-06-12",
-      currentSub: "Mix Picking",
-      overridenfn: "",
-      reasons: "",
-    },
-    {
-      USER_ID: "JM12",
-      FUNCTION: "PUTAWAY",
-      SUB_FUNCTION: "Case Pull",
-      TYPE: "Actual",
-      HOUR_BUCKET: 2,
-      LINES: 7.0,
-      MEASURED_MIN: 37.2,
-      DATE: "2021-06-12",
-      currentSub: "Mix Picking",
-      overridenfn: "",
-      reasons: "",
-    },
-    {
-      USER_ID: "WH1",
-      FUNCTION: "PUTAWAY",
-      SUB_FUNCTION: "Case Pull",
-      TYPE: "Actual",
-      HOUR_BUCKET: 2,
-      LINES: 10.0,
-      MEASURED_MIN: 55.2,
-      DATE: "2021-06-12",
-      currentSub: "Mix Picking",
-      overridenfn: "",
-      reasons: "",
-    },
-    {
-      USER_ID: "CV2",
-      FUNCTION: "PUTAWAY",
-      SUB_FUNCTION: "Case Pull",
-      TYPE: "Actual",
-      HOUR_BUCKET: 2,
-      LINES: 10.0,
-      MEASURED_MIN: 42.0,
-      DATE: "2021-06-12",
-      currentSub: "Mix Picking",
-      overridenfn: "",
-      reasons: "",
-    },
-  ];
+  // let data = [
+  //   {
+  //     USER_ID: "OG1",
+  //     FUNCTION: "PICKING",
+  //     SUB_FUNCTION: "0 Picking",
+  //     TYPE: "Actual",
+  //     HOUR_BUCKET: 2,
+  //     LINES: 41.0,
+  //     MEASURED_MIN: 57.6,
+  //     DATE: "2021-06-12",
+  //     currentSub: "Mix Picking",
+  //     overridenfn: "",
+  //     reasons: "",
+  //   },
+  //   {
+  //     USER_ID: "CL13",
+  //     FUNCTION: "PUTAWAY",
+  //     SUB_FUNCTION: "Case Pull",
+  //     TYPE: "Actual",
+  //     HOUR_BUCKET: 2,
+  //     LINES: 11.0,
+  //     MEASURED_MIN: 43.2,
+  //     DATE: "2021-06-12",
+  //     currentSub: "Mix Picking",
+  //     overridenfn: "",
+  //     reasons: "",
+  //   },
+  //   {
+  //     USER_ID: "JM12",
+  //     FUNCTION: "PUTAWAY",
+  //     SUB_FUNCTION: "Case Pull",
+  //     TYPE: "Actual",
+  //     HOUR_BUCKET: 2,
+  //     LINES: 7.0,
+  //     MEASURED_MIN: 37.2,
+  //     DATE: "2021-06-12",
+  //     currentSub: "Mix Picking",
+  //     overridenfn: "",
+  //     reasons: "",
+  //   },
+  //   {
+  //     USER_ID: "WH1",
+  //     FUNCTION: "PUTAWAY",
+  //     SUB_FUNCTION: "Case Pull",
+  //     TYPE: "Actual",
+  //     HOUR_BUCKET: 2,
+  //     LINES: 10.0,
+  //     MEASURED_MIN: 55.2,
+  //     DATE: "2021-06-12",
+  //     currentSub: "Mix Picking",
+  //     overridenfn: "",
+  //     reasons: "",
+  //   },
+  //   {
+  //     USER_ID: "CV2",
+  //     FUNCTION: "PUTAWAY",
+  //     SUB_FUNCTION: "Case Pull",
+  //     TYPE: "Actual",
+  //     HOUR_BUCKET: 2,
+  //     LINES: 10.0,
+  //     MEASURED_MIN: 42.0,
+  //     DATE: "2021-06-12",
+  //     currentSub: "Mix Picking",
+  //     overridenfn: "",
+  //     reasons: "",
+  //   },
+  // ];
   let timer = [
     { id: "1", value: "00:00 AM - 02:00 AM" },
     { id: "2", value: "02:00 AM - 04:00 AM" },
@@ -125,16 +126,14 @@ function Feedback() {
     data[index].reasons = e.target.value;
     setItems([...data]);
   };
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem(localStorage.getItem("userName"))) || data
-  );
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem(localStorage.getItem("userName")))||Data);
   const [errorFields, setErrorFields] = useState([]);
   const [checkAll, setCheckAll] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalText, setModalText] = useState("");
   const dataReset = () => {
     setShowModal(true);
-    setModalText("Resetting values will revert all your changes");
+    setModalText('Thanks you for accepting the recommendations.');
     let datas = items;
     datas.map((data) => {
       data.overridenfn = "";
@@ -147,12 +146,12 @@ function Feedback() {
     let datas = items;
     let validErrorData = [];
     let newDataArray = [];
-    datas.map((data, i) => {
-      if (data.overridenfn.length != 0 && data.reasons == 0) {
-        validErrorData.push(i);
-      } else {
-        if (data.overridenfn.length != 0) {
-          data.SUB_FUNCTION = data.overridenfn;
+    datas.map((data,i)=>{
+      if(data.overridenfn.length!=0 && data.reasons==0){
+        validErrorData.push(i)
+      }else{
+        if(data.overridenfn.length!=0){
+          data.ProjectedSubfunction =  data.overridenfn;
         }
         data.overridenfn = "";
         data.reasons = "";
@@ -166,7 +165,7 @@ function Feedback() {
       let userName = localStorage.getItem("userName");
       localStorage.setItem(userName, JSON.stringify(newDataArray));
       setShowModal(true);
-      setModalText("Changes are submitted successfully");
+      setModalText('Message-You Feedback has been recorded successfully.');
     }
   };
   const Table = (props) => {
@@ -180,7 +179,7 @@ function Feedback() {
             </th> */}
             <td scope="row">{item.USER_ID}</td>
             <td>{item.currentSub}</td>
-            <td>{item.SUB_FUNCTION}</td>
+            <td>{item.ProjectedSubfunction}</td>
             <td>
               <select
                 name="overridenfn"
@@ -315,12 +314,13 @@ function Feedback() {
                 <Table items={items} parentState={checkAll} />
               </tbody>
             </table>
-            {errorFields.length > 0 && (
+            
+          </div>
+          {errorFields.length > 0 && (
               <div className="errorData">
                 ***Please fill data in mandatory fields***
               </div>
             )}
-          </div>
           <div>
             <ol className="content__">
               <li className="content__item">
