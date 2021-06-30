@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import LoggedHeader from "../header";
 import Modal from '../../components/ModalComponent/Modal';
 import Data from '../../data/data.json';
+import {AiOutlineSearch} from "react-icons/ai"
 function Feedback() {
   // let data = [
   //   {
@@ -116,6 +117,7 @@ function Feedback() {
     let data = items;
     data[index].overridenfn = e.target.value;
     setItems([...data]);
+    setSearchItems([...data]);
   };
   const onChangeReasons = (e, index) => {
     console.log(e.target.value, index);
@@ -125,12 +127,15 @@ function Feedback() {
     let data = items;
     data[index].reasons = e.target.value;
     setItems([...data]);
+    setSearchItems([...data]);
   };
   const [items, setItems] = useState(JSON.parse(localStorage.getItem("admin"))||Data);
   const [errorFields, setErrorFields] = useState([]);
   const [checkAll, setCheckAll] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalText, setModalText] = useState("");
+  const [searchText, setSearchText] = useState('');
+  const [searchItems, setSearchItems] = useState(JSON.parse(localStorage.getItem("admin"))||Data);
   const dataReset = () => {
     setShowModal(true);
     setModalText('Thanks you for accepting the recommendations.');
@@ -140,6 +145,7 @@ function Feedback() {
       data.reasons = "";
     });
     setItems([...datas]);
+    setSearchItems([...datas]);
     setErrorFields([]);
   };
   const dataSubmit = () => {
@@ -239,7 +245,18 @@ function Feedback() {
   const handleCheckAll = () => {
     setCheckAll(!checkAll);
   };
-
+  const searchValueAdd = (e)=>{
+    setSearchText(e.target.value);
+    if(e.target.value.length===0){
+      setSearchItems([...items]);
+    }
+  }
+  const searchByUserID =()=>{
+    // console.log("Search Value  :  ",e.target.value);
+    let updatedData = items;
+    updatedData = searchText.length>0? updatedData.filter((item)=>item.USER_ID.includes(searchText.toUpperCase())):items;
+    setSearchItems([...updatedData]);
+  }
   return (
     <>
       <LoggedHeader />
@@ -292,6 +309,12 @@ function Feedback() {
             setShowModal={setShowModal}
             text={modalText}
           />
+          <div className="searchBoxContainer">
+            <p>Search User</p>
+          <div class="search-container">
+            <input type="text" placeholder="USER ID" name="search" onChange={searchValueAdd}/>
+            <button onClick={searchByUserID}><AiOutlineSearch /></button>
+        </div></div>
           <div className="px-3 pb-3 pt-1 tableConetent table-responsive">
             <table className="table table-hover table-dark ml-3">
               <thead>
@@ -312,7 +335,7 @@ function Feedback() {
                 </tr>
               </thead>
               <tbody>
-                <Table items={items} parentState={checkAll} />
+                <Table items={searchItems} parentState={checkAll} />
               </tbody>
             </table>
             

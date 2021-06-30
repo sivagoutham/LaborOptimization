@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BsFillPersonFill } from "react-icons/bs";
+import { BsFillPersonFill,BsInfoCircleFill } from "react-icons/bs";
 import Logo from '../../assets/download.png';
 function LoggedHeader() {
   useEffect(() => {
@@ -16,6 +16,7 @@ function LoggedHeader() {
           </div>
           <div className="header-Info">
           <p className="text-center pt-3">
+            <BsInfoCircleFill/>
             Floor manager will have to make sure they are submitting this data
             before start of work in that hour bucket
           </p>

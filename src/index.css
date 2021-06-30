@@ -141,7 +141,6 @@ html {
   font-size: 20px;
   margin-top: 10px;
   background-color: #007983;
-  border-radius: 25px;
   padding: 16px;
 }
 .contentContainer {
@@ -282,4 +281,12 @@ thead tr:nth-child(1) th {
   position: sticky;
   top: 0;
   z-index: 10;
+}
+
+.searchBoxContainer{
+  margin-bottom: 10px;
+}
+.searchBoxContainer p{
+  margin-bottom:0;
+  color: #ffffff;
 }
