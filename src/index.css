@@ -158,9 +158,6 @@ html {
   width: 13%;
   border-radius: 26px !important;
 }
-th{
-  width:max-content;
-}
 .tableConetent {
   border: 2px solid gray;
   margin-bottom: 20px;
@@ -174,9 +171,10 @@ tr {
   border:2px solid #ffffff;
   
 } */
-table{
-  width: 100% !important;
-}
+/* table{
+  table-layout: fixed !important;
+  width: 80% !important;
+} */
 
 /* th:nth-child(1){
   width:10% !important;

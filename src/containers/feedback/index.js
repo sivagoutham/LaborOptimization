@@ -11,6 +11,7 @@ import {
 import Pagination from "../../components/Pagination/Pagination";
 import Filter from "../../components/FilterComponent/Filter";
 import {
+  Table,
   Dropdown,
   ButtonDropdown,
   Button,
@@ -87,7 +88,6 @@ function Feedback() {
     ...new Set(items.map(({ ProjectedSubfunction }) => ProjectedSubfunction)),
   ];
   const [errorFields, setErrorFields] = useState([]);
-  const [checkAll, setCheckAll] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalText, setModalText] = useState("");
   const [searchText, setSearchText] = useState("");
@@ -203,15 +203,15 @@ function Feedback() {
       setModalText("Message-You Feedback has been recorded successfully.");
     }
   };
-  const Table = (props) => {
+  const TableData = (props) => {
     return (
       <>
         {props.items.length>0?props.items.map((item, i) => (
           <tr key={i}>
-            <td scope="col">{item.USER_ID}</td>
-            <td scope="col">{item.ExistingSubfunction}</td>
-            <td scope="col">{item.ProjectedSubfunction}</td>
-            <td scope="col">
+            <th scope="row" width="10%" >{item.USER_ID}</th>
+            <td width="20%">{item.ExistingSubfunction}</td>
+            <td width="25%" >{item.ProjectedSubfunction}</td>
+            <td  width="20%">
               <select
                 name="overridenfn"
                 id="overridenfn"
@@ -232,7 +232,7 @@ function Feedback() {
                 <option value="Manual Packing">Manual Packing</option>
               </select>
             </td>
-            <td scope="col">
+            <td width="25%" >
               <select
                 name="reasons"
                 id="reasons"
@@ -262,13 +262,11 @@ function Feedback() {
               </select>
             </td>
           </tr>
-        )):<tr key="nodata"><td scope="col" colSpan="5">No D</td></tr>}
+        )):<tr key="nodata" ><td colspan="5" width="100%">No Data</td></tr>}
       </>
     );
   };
-  const handleCheckAll = () => {
-    setCheckAll(!checkAll);
-  };
+  
   const searchValueAdd = (e) => {
     setSearchText(e.target.value);
     if (e.target.value.length === 0) {
@@ -379,16 +377,8 @@ function Feedback() {
             <table className="table table-hover table-dark ml-3"  style={{width: "100% !important"}}>
               <thead>
                 <tr style={{ borderBottom: "3px solid black" }}>
-                  {/* <th scope="col"> */}
-                  {/* <input
-                      type="checkbox"
-                      id="selectall"
-                      onChange={handleCheckAll}
-                      checked={checkAll}
-                    /> */}
-                  {/* </th> */}
-                  <th scope="col">User ID</th>
-                  <th scope="col">
+                  <th scope="col"  width="10% !important">User ID</th>
+                  <th scope="col"  width="20% !important">
                     <div className="d-flex currentDropdown">
                       Current Subfunction{" "}
                       <div ref={recommendRef}>
@@ -404,25 +394,9 @@ function Feedback() {
                           />
                         )}
                       </div>
-                      {/* <Dropdown
-                        isOpen={openCurrentSelect}
-                        toggle={closeCurrentSelect}
-                      >
-                        <DropdownToggle>
-                          <AiFillCaretDown />
-                        </DropdownToggle>
-                        <DropdownMenu right className="dropddownItem">
-                          {currentItemFilters.map((data) => (
-                            <DropdownItem value={data} onClick={checkSelectCurrent}>
-                              {currentFilterText.includes(data)?<AiFillCheckSquare/>:<AiOutlineCheckSquare/>}
-                              
-                              {data}</DropdownItem>
-                          ))}
-                        </DropdownMenu>
-                      </Dropdown> */}
                     </div>
                   </th>
-                  <th scope="col">
+                  <th scope="col"  width="25% !important">
                     <div className="d-flex currentDropdown">
                       Recommended Subfunction
                       <div ref={currentref}>
@@ -438,32 +412,17 @@ function Feedback() {
                           />
                         )}
                       </div>
-                      {/* <Dropdown
-                        isOpen={openCurrentRecommend}
-                        toggle={closeCurrentRecommend}
-                      >
-                        <DropdownToggle>
-                          <AiFillCaretDown />
-                        </DropdownToggle>
-                        <DropdownMenu right className="dropddownItem">
-                          {recommendedItemFilters.map((data) => (
-                            <DropdownItem value={data} onClick={checkSelectRecommend}>
-                              {recommendFilterText.includes(data)?<AiFillCheckSquare/>:<AiOutlineCheckSquare/>}
-                              {data}
-                            </DropdownItem>
-                          ))}
-                        </DropdownMenu>
-                      </Dropdown> */}
                     </div>
                   </th>
-                  <th scope="col">Overridden Subfunction</th>
-                  <th scope="col">Reason</th>
+                  <th scope="col" width="20% !important">Overridden Subfunction</th>
+                  <th scope="col"  width="25% !important">Reason</th>
                 </tr>
               </thead>
               <tbody>
-                <Table items={searchItems} parentState={checkAll} />
+                <TableData items={searchItems} />
               </tbody>
             </table>
+
           </div>
           {errorFields.length > 0 && (
             <div className="errorData">
