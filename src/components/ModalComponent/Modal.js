@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const ModalExample = (props) => {
+const ModalComponent = (props) => {
   const {
     isOpen,
     setShowModal,
@@ -31,4 +31,4 @@ const ModalExample = (props) => {
   );
 }
 
-export default ModalExample;
+export default ModalComponent;

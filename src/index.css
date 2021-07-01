@@ -158,6 +158,9 @@ html {
   width: 13%;
   border-radius: 26px !important;
 }
+th{
+  width:max-content;
+}
 .tableConetent {
   border: 2px solid gray;
   margin-bottom: 20px;
@@ -171,6 +174,19 @@ tr {
   border:2px solid #ffffff;
   
 } */
+table{
+  width: 100% !important;
+}
+
+/* th:nth-child(1){
+  width:10% !important;
+} */
+/* th{
+  white-space: nowrap;
+} */
+thead{
+  vertical-align:middle !important;
+}
 .content__ {
   display: flex;
   width: 100%;
@@ -262,15 +278,14 @@ tr {
   color: red;
   background-color: #fff;
   border-color: 1px solid red;
-  
 }
-.ModalContent{
+.ModalContent {
   display: grid;
   text-align: center;
   justify-items: center;
 }
-.ModalButton{
-  width:fit-content;
+.ModalButton {
+  width: fit-content;
 }
 
 .table-responsive {
@@ -283,10 +298,59 @@ thead tr:nth-child(1) th {
   z-index: 10;
 }
 
-.searchBoxContainer{
+.searchBoxContainer {
   margin-bottom: 10px;
 }
-.searchBoxContainer p{
-  margin-bottom:0;
+.searchBoxContainer p {
+  margin-bottom: 0;
   color: #ffffff;
+}
+.searchBoxContainer button {
+  border: 2px solid white !important;
+}
+h5 {
+  color: #fff;
+}
+.currentDropdown button {
+  height: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.currentDropdown button:hover {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+.currentDropdown svg {
+  margin-top: -6px;
+}
+.dropddownItem button {
+  padding: 0px;
+  height: fit-content;
+  border-bottom: 1px solid;
+}
+.dropddownItem svg {
+  vertical-align: middle !important;
+}
+.pageNumberContainer {
+  border: 2px solid white;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  margin: 2px;
+  color: white;
+  padding-bottom: 25px;
+}
+.justify-Center {
+  justify-content: center;
+}
+.dropdown_container {
+  background-color: grey;
+  padding: 20px;
+  width: fit-content;
+  position: absolute;
+  right: 36px;
+  top: 31px;
+  color: white;
 }

@@ -1,76 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import LoggedHeader from "../header";
-import Modal from '../../components/ModalComponent/Modal';
-import Data from '../../data/data.json';
-import {AiOutlineSearch} from "react-icons/ai"
+import Modal from "../../components/ModalComponent/Modal";
+import Data from "../../data/data.json";
+import {
+  AiOutlineSearch,
+  AiFillCaretDown,
+  AiFillCheckSquare,
+  AiOutlineCheckSquare,
+} from "react-icons/ai";
+import Pagination from "../../components/Pagination/Pagination";
+import Filter from "../../components/FilterComponent/Filter";
+import {
+  Dropdown,
+  ButtonDropdown,
+  Button,
+  DropdownMenu,
+  DropdownToggle,
+  DropdownItem,
+} from "reactstrap";
 function Feedback() {
-  // let data = [
-  //   {
-  //     USER_ID: "OG1",
-  //     FUNCTION: "PICKING",
-  //     SUB_FUNCTION: "0 Picking",
-  //     TYPE: "Actual",
-  //     HOUR_BUCKET: 2,
-  //     LINES: 41.0,
-  //     MEASURED_MIN: 57.6,
-  //     DATE: "2021-06-12",
-  //     currentSub: "Mix Picking",
-  //     overridenfn: "",
-  //     reasons: "",
-  //   },
-  //   {
-  //     USER_ID: "CL13",
-  //     FUNCTION: "PUTAWAY",
-  //     SUB_FUNCTION: "Case Pull",
-  //     TYPE: "Actual",
-  //     HOUR_BUCKET: 2,
-  //     LINES: 11.0,
-  //     MEASURED_MIN: 43.2,
-  //     DATE: "2021-06-12",
-  //     currentSub: "Mix Picking",
-  //     overridenfn: "",
-  //     reasons: "",
-  //   },
-  //   {
-  //     USER_ID: "JM12",
-  //     FUNCTION: "PUTAWAY",
-  //     SUB_FUNCTION: "Case Pull",
-  //     TYPE: "Actual",
-  //     HOUR_BUCKET: 2,
-  //     LINES: 7.0,
-  //     MEASURED_MIN: 37.2,
-  //     DATE: "2021-06-12",
-  //     currentSub: "Mix Picking",
-  //     overridenfn: "",
-  //     reasons: "",
-  //   },
-  //   {
-  //     USER_ID: "WH1",
-  //     FUNCTION: "PUTAWAY",
-  //     SUB_FUNCTION: "Case Pull",
-  //     TYPE: "Actual",
-  //     HOUR_BUCKET: 2,
-  //     LINES: 10.0,
-  //     MEASURED_MIN: 55.2,
-  //     DATE: "2021-06-12",
-  //     currentSub: "Mix Picking",
-  //     overridenfn: "",
-  //     reasons: "",
-  //   },
-  //   {
-  //     USER_ID: "CV2",
-  //     FUNCTION: "PUTAWAY",
-  //     SUB_FUNCTION: "Case Pull",
-  //     TYPE: "Actual",
-  //     HOUR_BUCKET: 2,
-  //     LINES: 10.0,
-  //     MEASURED_MIN: 42.0,
-  //     DATE: "2021-06-12",
-  //     currentSub: "Mix Picking",
-  //     overridenfn: "",
-  //     reasons: "",
-  //   },
-  // ];
+  document.title = "Feedback loop for cross-training";
   let timer = [
     { id: "1", value: "00:00 AM - 02:00 AM" },
     { id: "2", value: "02:00 AM - 04:00 AM" },
@@ -91,6 +40,7 @@ function Feedback() {
     hour12: true,
     minute: "numeric",
   });
+
   function getTwentyFourHourTime(amPmString) {
     var d = new Date("1/1/2021 " + amPmString);
     return d.getHours();
@@ -106,21 +56,19 @@ function Feedback() {
       return element;
     }
   });
-  let index = "";
+  let index = 0;
   if (findvalue.id === "12") {
     index = 0;
   } else {
-    index = parseInt(findvalue.id);
+    index = parseInt(findvalue.id) || 0;
   }
   const onChangeOverridenfn = (e, index) => {
-    console.log(e.target.value, index);
     let data = items;
     data[index].overridenfn = e.target.value;
     setItems([...data]);
     setSearchItems([...data]);
   };
   const onChangeReasons = (e, index) => {
-    console.log(e.target.value, index);
     if (errorFields.includes(index)) {
       errorFields.splice(errorFields.indexOf(index), 1);
     }
@@ -129,16 +77,97 @@ function Feedback() {
     setItems([...data]);
     setSearchItems([...data]);
   };
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem("admin"))||Data);
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem("admin")) || Data
+  );
+  const currentItemFilters = [
+    ...new Set(items.map(({ ExistingSubfunction }) => ExistingSubfunction)),
+  ];
+  const recommendedItemFilters = [
+    ...new Set(items.map(({ ProjectedSubfunction }) => ProjectedSubfunction)),
+  ];
   const [errorFields, setErrorFields] = useState([]);
   const [checkAll, setCheckAll] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalText, setModalText] = useState("");
-  const [searchText, setSearchText] = useState('');
-  const [searchItems, setSearchItems] = useState(JSON.parse(localStorage.getItem("admin"))||Data);
+  const [searchText, setSearchText] = useState("");
+  const [currentFilterText, setcurrentFilterText] = useState([]);
+  const [recommendFilterText, setrecommendFilterText] = useState([]);
+  const [currentPage, setcurrentPage] = useState([0]);
+  const totalPages = Math.ceil(items.length / 5);
+  const [searchItems, setSearchItems] = useState(
+    JSON.parse(localStorage.getItem("admin")) || Data
+  );
+  const [openCurrentSelect, setOpenCurrentSelect] = useState(false);
+  const [openCurrentRecommend, setOpenCurrentRecommend] = useState(false);
+  const closeCurrentSelect = () => {
+    setOpenCurrentSelect(!openCurrentSelect);
+  };
+  const checkSelectCurrent = (e) => {
+    let filterData = currentFilterText;
+    if (filterData.indexOf(e) === -1) {
+      filterData.push(e);
+    } else {
+      filterData.splice(filterData.indexOf(e), 1);
+    }
+    setcurrentFilterText(filterData);
+    let data = items.filter((data)=> (searchText.length > 0
+      ? data.USER_ID.includes(searchText.toUpperCase())
+      : true));
+    // (searchText.length>0?data.USER_ID.includes(searchText.toUpperCase()):true)&&
+    if (filterData.length > 0) {
+      data = data.filter(
+        (data) =>
+          filterData.includes(data.ExistingSubfunction) &&
+          (recommendFilterText.length > 0
+            ? recommendFilterText.includes(data.ProjectedSubfunction)
+            : true)
+      );
+    } else {
+      data = data.filter((data) =>
+       recommendFilterText.length > 0
+          ? recommendFilterText.includes(data.ProjectedSubfunction)
+          : true
+      );
+    }
+    setSearchItems(data);
+  };
+  const closeCurrentRecommend = () => {
+    setOpenCurrentRecommend(!openCurrentRecommend);
+  };
+  const checkSelectRecommend = (e) => {
+    let filterData = recommendFilterText;
+    if (filterData.indexOf(e) === -1) {
+      filterData.push(e);
+    } else {
+      filterData.splice(filterData.indexOf(e), 1);
+    }
+    setrecommendFilterText(filterData);
+    let data = items.filter((data)=> (searchText.length > 0
+      ? data.USER_ID.includes(searchText.toUpperCase())
+      : true));
+    console.log(searchText);
+    if (filterData.length !== 0) {
+      data = data.filter(
+        (data) =>
+          filterData.includes(data.ProjectedSubfunction) &&
+          (currentFilterText.length > 0
+            ? currentFilterText.includes(data.ExistingSubfunction)
+            : true)
+      );
+    } else {
+      console.log(searchText);
+      data = data.filter((data) =>
+        currentFilterText.length > 0
+          ? currentFilterText.includes(data.ExistingSubfunction)
+          : true
+      );
+    }
+    setSearchItems(data);
+  };
   const dataReset = () => {
     setShowModal(true);
-    setModalText('Thanks you for accepting the recommendations.');
+    setModalText("Thanks you for accepting the recommendations.");
     let datas = items;
     datas.map((data) => {
       data.overridenfn = "";
@@ -152,19 +181,18 @@ function Feedback() {
     let datas = items;
     let validErrorData = [];
     let newDataArray = [];
-    datas.map((data,i)=>{
-      if(data.overridenfn.length!=0 && data.reasons==0){
-        validErrorData.push(i)
-      }else{
-        if(data.overridenfn.length!=0){
-          data.ProjectedSubfunction =  data.overridenfn;
+    datas.map((data, i) => {
+      if (data.overridenfn.length != 0 && data.reasons == 0) {
+        validErrorData.push(i);
+      } else {
+        if (data.overridenfn.length != 0) {
+          data.ProjectedSubfunction = data.overridenfn;
         }
         data.overridenfn = "";
         data.reasons = "";
         newDataArray.push(data);
       }
     });
-    console.log("newDataArray", newDataArray);
     setErrorFields(validErrorData);
     if (validErrorData.length === 0) {
       //submit function call here
@@ -172,22 +200,18 @@ function Feedback() {
       let userName = "admin";
       localStorage.setItem(userName, JSON.stringify(newDataArray));
       setShowModal(true);
-      setModalText('Message-You Feedback has been recorded successfully.');
+      setModalText("Message-You Feedback has been recorded successfully.");
     }
   };
   const Table = (props) => {
-    console.log(props);
     return (
       <>
-        {props.items.map((item, i) => (
+        {props.items.length>0?props.items.map((item, i) => (
           <tr key={i}>
-            {/* <th scope="row">
-              <input type="checkbox" class="singlechkbox" name={item.userId} />
-            </th> */}
-            <td scope="row">{item.USER_ID}</td>
-            <td>{item.currentSub}</td>
-            <td>{item.ProjectedSubfunction}</td>
-            <td>
+            <td scope="col">{item.USER_ID}</td>
+            <td scope="col">{item.ExistingSubfunction}</td>
+            <td scope="col">{item.ProjectedSubfunction}</td>
+            <td scope="col">
               <select
                 name="overridenfn"
                 id="overridenfn"
@@ -208,7 +232,7 @@ function Feedback() {
                 <option value="Manual Packing">Manual Packing</option>
               </select>
             </td>
-            <td>
+            <td scope="col">
               <select
                 name="reasons"
                 id="reasons"
@@ -238,29 +262,57 @@ function Feedback() {
               </select>
             </td>
           </tr>
-        ))}
+        )):<tr key="nodata"><td scope="col" colSpan="5">No D</td></tr>}
       </>
     );
   };
   const handleCheckAll = () => {
     setCheckAll(!checkAll);
   };
-  const searchValueAdd = (e)=>{
+  const searchValueAdd = (e) => {
     setSearchText(e.target.value);
-    if(e.target.value.length===0){
+    if (e.target.value.length === 0) {
       setSearchItems([...items]);
     }
-  }
-  const searchByUserID =()=>{
-    // console.log("Search Value  :  ",e.target.value);
+  };
+  const searchByUserID = () => {
     let updatedData = items;
-    updatedData = searchText.length>0? updatedData.filter((item)=>item.USER_ID.includes(searchText.toUpperCase())):items;
+    updatedData =
+      searchText.length > 0
+        ? updatedData.filter((item) =>
+            item.USER_ID.includes(searchText.toUpperCase())
+          )
+        : items;
     setSearchItems([...updatedData]);
-  }
+    console.log(searchText)
+  };
+  const [isOpen, setIsOpen] = useState(false);
+  const currentref = useRef(null);
+  const recommendRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (openCurrentRecommend) {
+      if (currentref.current && !currentref.current.contains(event.target)) {
+        setOpenCurrentRecommend(!openCurrentRecommend);
+      }
+    }
+    if (openCurrentSelect) {
+      if (
+        recommendRef.current &&
+        !recommendRef.current.contains(event.target)
+      ) {
+        setOpenCurrentSelect(!openCurrentSelect);
+      }
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+  });
   return (
     <>
       <LoggedHeader />
       <div className="container" style={{ paddingTop: "7rem" }}>
+        <h5>Feedback loop for cross-training</h5>
+
         <div className="backgroundImageGIF">
           <div className="contentDisplay pt-4">
             <div className="justify-content-center align-items-center">
@@ -311,12 +363,20 @@ function Feedback() {
           />
           <div className="searchBoxContainer">
             <p>Search User</p>
-          <div class="search-container">
-            <input type="text" placeholder="USER ID" name="search" onChange={searchValueAdd}/>
-            <button onClick={searchByUserID}><AiOutlineSearch /></button>
-        </div></div>
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="USER ID"
+                name="search"
+                onChange={searchValueAdd}
+              />
+              <button onClick={searchByUserID}>
+                <AiOutlineSearch />
+              </button>
+            </div>
+          </div>
           <div className="px-3 pb-3 pt-1 tableConetent table-responsive">
-            <table className="table table-hover table-dark ml-3">
+            <table className="table table-hover table-dark ml-3"  style={{width: "100% !important"}}>
               <thead>
                 <tr style={{ borderBottom: "3px solid black" }}>
                   {/* <th scope="col"> */}
@@ -328,8 +388,74 @@ function Feedback() {
                     /> */}
                   {/* </th> */}
                   <th scope="col">User ID</th>
-                  <th scope="col">Current Subfunction</th>
-                  <th scope="col">Recommended Subfunction</th>
+                  <th scope="col">
+                    <div className="d-flex currentDropdown">
+                      Current Subfunction{" "}
+                      <div ref={recommendRef}>
+                        <button onClick={closeCurrentSelect}>
+                          {" "}
+                          <AiFillCaretDown />
+                        </button>
+                        {openCurrentSelect && (
+                          <Filter
+                            selectFilter={checkSelectCurrent}
+                            filters={currentFilterText}
+                            options={currentItemFilters}
+                          />
+                        )}
+                      </div>
+                      {/* <Dropdown
+                        isOpen={openCurrentSelect}
+                        toggle={closeCurrentSelect}
+                      >
+                        <DropdownToggle>
+                          <AiFillCaretDown />
+                        </DropdownToggle>
+                        <DropdownMenu right className="dropddownItem">
+                          {currentItemFilters.map((data) => (
+                            <DropdownItem value={data} onClick={checkSelectCurrent}>
+                              {currentFilterText.includes(data)?<AiFillCheckSquare/>:<AiOutlineCheckSquare/>}
+                              
+                              {data}</DropdownItem>
+                          ))}
+                        </DropdownMenu>
+                      </Dropdown> */}
+                    </div>
+                  </th>
+                  <th scope="col">
+                    <div className="d-flex currentDropdown">
+                      Recommended Subfunction
+                      <div ref={currentref}>
+                        <button onClick={closeCurrentRecommend}>
+                          {" "}
+                          <AiFillCaretDown />
+                        </button>
+                        {openCurrentRecommend && (
+                          <Filter
+                            selectFilter={checkSelectRecommend}
+                            filters={recommendFilterText}
+                            options={recommendedItemFilters}
+                          />
+                        )}
+                      </div>
+                      {/* <Dropdown
+                        isOpen={openCurrentRecommend}
+                        toggle={closeCurrentRecommend}
+                      >
+                        <DropdownToggle>
+                          <AiFillCaretDown />
+                        </DropdownToggle>
+                        <DropdownMenu right className="dropddownItem">
+                          {recommendedItemFilters.map((data) => (
+                            <DropdownItem value={data} onClick={checkSelectRecommend}>
+                              {recommendFilterText.includes(data)?<AiFillCheckSquare/>:<AiOutlineCheckSquare/>}
+                              {data}
+                            </DropdownItem>
+                          ))}
+                        </DropdownMenu>
+                      </Dropdown> */}
+                    </div>
+                  </th>
                   <th scope="col">Overridden Subfunction</th>
                   <th scope="col">Reason</th>
                 </tr>
@@ -338,13 +464,13 @@ function Feedback() {
                 <Table items={searchItems} parentState={checkAll} />
               </tbody>
             </table>
-            
           </div>
           {errorFields.length > 0 && (
-              <div className="errorData">
-                ***Please fill data in mandatory fields***
-              </div>
-            )}
+            <div className="errorData">
+              ***Please fill data in mandatory fields***
+            </div>
+          )}
+          {/* <Pagination  pages={totalPages} currentPage={currentPage} setcurrentPage={setcurrentPage}/> */}
           <div>
             <ol className="content__">
               <li className="content__item">
