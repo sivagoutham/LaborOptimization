@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { BsFillPersonFill,BsInfoCircleFill } from "react-icons/bs";
 import Logo from '../../assets/download.png';
 function LoggedHeader() {
-  useEffect(() => {
-    //console.log(window.gapi)
-  }, []);
+  // useEffect(() => {
+    
+  // }, []);
   return (
     <header className="page-header">
       <div className="headerMenu">
